@@ -200,10 +200,14 @@ char * read_file(const char *filename, int * length) {
 		if (buffer)
 		{
 			fread (buffer, 1, len, file);
+			buffer[len] = '\0';
+			fclose (file);
+			*length = len;
 		}
-		fclose (file);
-		buffer[len] = '\0';
-		*length = len;
+		else {
+			printf("malloc failed");
+			exit(1);
+		}
 	}
 	else {
 		*length = -1;
