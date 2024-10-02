@@ -7,6 +7,7 @@
 #define RUST_STDLIB_PATH_ARG "link-args=-Wl,-rpath,"
 /* #define RUST_LIB_DIR "/home/navn/nonssd/rust/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib" */
 #define RUST_LIB_DIR "/home/navn/bin/lib/rust"
+#define RUST_EDITION "2021"
 #include <assert.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -80,7 +81,7 @@ int main(int argc, char **argv) {
 			strcpy(rust_std_lib_path_args, RUST_STDLIB_PATH_ARG);
 			strcat(rust_std_lib_path_args, RUST_LIB_DIR);
 			//file doesn't exist. Create it.
-			char * kargs[11];
+			char * kargs[13];
 			kargs[0] = "rustc";
 			kargs[1] = script_path;
 			kargs[2] = "-C";
@@ -91,7 +92,9 @@ int main(int argc, char **argv) {
 			kargs[7] = rust_std_lib_path_args;
 			kargs[8] = "-o";
 			kargs[9] = bin_file_path;
-			kargs[10] = NULL;
+			kargs[10] = "--edition";
+			kargs[11] = RUST_EDITION;
+			kargs[12] = NULL;
 
 			execvp(kargs[0], kargs);
 
