@@ -7,3 +7,6 @@ edition = "2021"
 crate-type = ["dylib"]
 
 [dependencies]
+# regex = "1.11"
+# either = "1.13"
+regex-lite = "0.1"
