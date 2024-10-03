@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
 			strcpy(rust_std_lib_path_args, RUST_STDLIB_PATH_ARG);
 			strcat(rust_std_lib_path_args, RUST_LIB_DIR);
 			//file doesn't exist. Create it.
-			char * kargs[13];
+			char * kargs[15];
 			kargs[0] = "rustc";
 			kargs[1] = script_path;
 			kargs[2] = "-C";
@@ -95,7 +95,9 @@ int main(int argc, char **argv) {
 			kargs[9] = bin_file_path;
 			kargs[10] = "--edition";
 			kargs[11] = RUST_EDITION;
-			kargs[12] = NULL;
+			kargs[12] = "-C";
+			kargs[13] = "opt-level=3";
+			kargs[14] = NULL;
 
 			execvp(kargs[0], kargs);
 
