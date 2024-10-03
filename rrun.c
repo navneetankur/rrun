@@ -68,6 +68,7 @@ int main(int argc, char **argv) {
 			timespce_lt(bin_stat.st_mtim, script_stat.st_mtim) ||
 			rust_lib_is_modified(bin_stat.st_mtim)
 	  ) {
+		remove(bin_file_path);
 		//create directory for bin.
 		if(mkpath(bin_file_path, 0755) != 0) {
 			printf("failed creating dir. %s", bin_file_path);
